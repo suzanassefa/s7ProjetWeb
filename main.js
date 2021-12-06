@@ -2,8 +2,9 @@
 
 let les_cles_dalice = generate_key(4);
 console.log("[p,q,n,phin,d,e] = ", les_cles_dalice);
-
-
+let mots_coder = []
+let mots_chiffrer = []
+let mots_dechiffrer = []
 function diplayConnection(){
   document.getElementById("contentPconnection").style.display = "block";
   if (document.getElementById("contentDialogue").style !="none"){
@@ -35,12 +36,14 @@ function contenue_chaque_button(id, cours, resultat){
 }
 function affichage_prochain_button(id, def, attribut, value){
   let div = document.getElementById(id);
-  let button = document.createElement("button");
-  button.setAttribute("class", "button");
-  button.setAttribute("onCLick", def+"("+attribut+")");
-  let t = document.createTextNode(value);
-  button.appendChild(t);
-  div.appendChild(button);
+  if(div.childNodes.length == 2){
+    let button = document.createElement("button");
+    button.setAttribute("class", "button");
+    button.setAttribute("onCLick", def+"("+attribut+")");
+    let t = document.createTextNode(value);
+    button.appendChild(t);
+    div.appendChild(button);
+  }
 }
 
 function nb_premier(){
@@ -79,7 +82,7 @@ function envoyer_en(){
   contenue_chaque_button("envoyer_en", cours, resultat);
 
   let div = document.getElementById("form");
-  if(div.childNodes.length == 0){
+//  if(div.childNodes.length == 0){
     let form = document.createElement('form')
     let input = document.createElement('input');
     input.setAttribute("type", "text");
@@ -95,19 +98,21 @@ function envoyer_en(){
     form.appendChild(input);
     form.appendChild(button);
     div.appendChild(form);
-  }
+//  }
 }
 
 function afficherMot_coder(mot_coder){
+  mots_coder  = mot_coder;
   let cours = "lorium isum dot set amet";
   let resultat = "le mot-clé transformé en nombres selon la position de ses lettres dans l’alphabet  est égale à "+ mot_coder;
   contenue_chaque_button("codage", cours, resultat);
-  affichage_prochain_button("codage", "chiffrement", mot_coder, "crypter "+ mot_coder+ " et l'envoyer à Alice")
+  affichage_prochain_button("codage", "chiffrement", "", "crypter "+ mot_coder+ " et l'envoyer à Alice")
 }
 
-function chiffrement(mot_coder){
-  let chiffrer = square_and_multiply(BigInt(mot_coder), les_cles_dalice[5], les_cles_dalice[2]);
-
+function chiffrement(){
+  let chiffrer = enchiffrer(mots_coder, les_cles_dalice[5], les_cles_dalice[2]);
+  mots_chiffrer = chiffrer;
+  console.log(mots_chiffrer);
   let cours = "lorium isum dot set amet";
   let resultat = "le message crypter/chiffré est "+ chiffrer;
   contenue_chaque_button("chiffrage", cours, resultat);
@@ -115,16 +120,16 @@ function chiffrement(mot_coder){
   let cours2 = "lorium isum dot set amet";
   let resultat2 = "le message crypter/chiffré que Bob à envoyer est "+ chiffrer;
   contenue_chaque_button("etape3", cours2, resultat2);
-  affichage_prochain_button("etape3", "dechiffrement", chiffrer, "décrypter "+ chiffrer);
+  affichage_prochain_button("etape3", "dechiffrement", "", "décrypter "+ chiffrer);
 }
 
-function dechiffrement(chiffrer){
-  let dechiffrer= square_and_multiply(BigInt(chiffrer), les_cles_dalice[4], les_cles_dalice[2]);
-
+function dechiffrement(){
+  let dechiffrer= enchiffrer(mots_chiffrer, les_cles_dalice[4], les_cles_dalice[2]);
+  mots_dechiffrer = dechiffrer;
   let cours = "lorium isum dot set amet";
   let resultat = "le message coder en nombre est "+ dechiffrer;
   contenue_chaque_button("dechiffrage", cours, resultat);
-  affichage_prochain_button("dechiffrage", "decoder_mot", dechiffrer, "decoder "+ dechiffrer+" et afficher le message en lettre");
+  affichage_prochain_button("dechiffrage", "decoder_mot", "", "decoder "+ dechiffrer+" et afficher le message en lettre");
 }
 
 function afficherMot_decoder(mot){

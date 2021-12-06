@@ -1,5 +1,6 @@
 "use strict"
 // calcule a**(N-1) ≡ 1 mod N la condition de fermat
+let alphabet = ["a","b","c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "];
 
 function my_powMod(a, b, n){
   return (a ** b) % n;
@@ -155,6 +156,14 @@ function tester(k){
 }
 
 //codeur et décodeur
+function enchiffrer(m, e, n){
+  let lettres = []
+  for (let p=0; p<m.length; p++){
+    lettres.push(square_and_multiply(m[p], e, n));
+  }
+  return lettres
+}
+
 function square_and_multiply(m, e, n){
   let step = my_pow(m,2n);
   for (let i=2n; i<e; i++){
@@ -165,10 +174,27 @@ function square_and_multiply(m, e, n){
 
 function coder_mot(){
   let saisie = document.getElementById("mot_cle").value;
-  console.log(saisie);
-  afficherMot_coder(37);
+  saisie = saisie.toLowerCase();
+  let mot_coder = [];
+  for(let i=0; i<saisie.length; i++){
+    for(let j=0; j<alphabet.length; j++){
+      if(saisie[i] == alphabet[j]){
+        mot_coder.push(BigInt(j));
+      }
+    }
+  }
+  console.log(mot_coder);
+  afficherMot_coder(mot_coder);
 }
 
-function decoder_mot(dechiffrer){
-afficherMot_decoder(document.getElementById("mot_cle").value);
-}
+function decoder_mot(){
+  let saisie = mots_dechiffrer;
+  let mot_coder = "";
+  for(let i=0; i<saisie.length; i++){
+    for(let j=0; j<alphabet.length; j++){
+      if(saisie[i] == j){
+        mot_coder += alphabet[j];
+      }
+    }
+  }
+  afficherMot_decoder(mot_coder);}

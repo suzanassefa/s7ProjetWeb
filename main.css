@@ -12,6 +12,6 @@ body{
   grid-template-columns: 1fr 1fr;
 }
 
-#contentPconnection{
+#contentDialogue{
   display : none
 }
