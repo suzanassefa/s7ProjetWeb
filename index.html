@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
+
   <head>
     <meta charset="utf-8">
     <title>Cryptographie</title>
     <link rel="stylesheet" type="text/css" href="main.css">
-    <script src="/script/main.js"></script>
-
+    <script src="functions.js"></script>
+    <script src="main.js"></script>
   </head>
-  <body>
-    <div id='content'>
-    <section>
-      <h2>Alice</h2>
-      <input type='text' id='messagEnvoyer' value="send a message">
-      <button class='button' name="button">Send</button>
-    </section>
-    <section>
 
-    </section>
-    <section>
-      <h2>Bob</h2>
-      <input type='text' id='messagEnvoyer' value="send a message">
-      <button class='button' name="button">Send</button>
-    </section>
+  <body>
+    <div id ="option">
+      <button class="button" name='button' id="premContactButton" onCLick="diplayConnection()">Établir une première connection</button>
+      <button class="button" name='button' id = "discussionButton" onCLick="displayDiscussion()">Voir les discussions</button>
+    </div>
+    <div id="contentDialogue">
+      <div id = "innercontent1">
+      <section>
+        <h2>Alice</h2>
+            <input type='text' class='messagEnvoyer' value="send a message">
+            <button class='button' name="button">Send</button>
+      </section>
+      <section>
+        <h2>Bob</h2>
+            <input type='text' class='messagEnvoyer' value="send a message">
+            <button class='button' name="button">Send</button>
+      </section>
+    </div>
+  </div>
+    <div id='contentPconnection'>
+      <div id= "innercontent2">
+        <section id="sectionAlice">
+          <h4>Alice veut contacter Bob pour la première fois.</h4>
+          <h4>Etapes 1</h4>
+          <p>Alice contruit une clé privée et une clé publique.</p>
+          <button class="button" name='button' id="randomPremeier" onCLick="nb_premier()">choisir deux nombre premier aléatoirement</button>
+          <div id="nb_premier"></div>
+          <div id="n_et_f"></div>
+          <div id="e"></div>
+          <div id="d"></div>
+          <h4>Etapes 3</h4>
+          <div id = "etape3"></div>
+          <div id = "dechiffrage"></div>
+          <div id = "decodage"></div>
+        </section>
+        <section id="sectionBob">
+          <h4>Bob réucpère la clé public (e, n) et le mot clé</h4>
+          <h4>Etapes 2</h4>
+          <div id = "envoyer_en"></div>
+          <div id = "form"></div>
+          <div id = "codage"></div>
+          <div id = "chiffrage"></div>
+        </section>
+      </div>
     </div>
   </body>
 </html>

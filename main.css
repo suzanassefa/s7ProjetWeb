@@ -3,7 +3,15 @@ body{
   padding: 500;
 }
 
-#content{
+#innercontent1{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+#innercontent2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+#contentPconnection{
+  display : none
 }
