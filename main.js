@@ -72,7 +72,7 @@ function d(){
   let cours = "lorium isum dot set amet";
   let resultat = "d = "+les_cles_dalice[4];
   contenue_chaque_button("d", cours, resultat);
-  affichage_prochain_button('d', "envoyer_en", "", "Eneyer la clé (e,n) à Bob");
+  affichage_prochain_button('d', "envoyer_en", "", "Envoyer la clé (e,n) à Bob");
 }
 
 function envoyer_en(){
